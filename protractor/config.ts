@@ -13,5 +13,5 @@ export const config: Config = {
  getPageTimeout: 30000,
  jasmineNodeOpts: {
   defaultTimeoutInterval: 120000
-}
+ }
 }
