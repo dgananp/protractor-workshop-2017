@@ -14,7 +14,7 @@ export class SignInStepPage {
   return $('#SubmitLogin > span');
  }
 
- public async  signIn(email, passwd): Promise<void> {
+ public async signIn(email, passwd): Promise<void> {
   await this.email.sendKeys(email);
   await this.passwd.sendKeys(passwd);
   await this.submitLogin.click(); 
