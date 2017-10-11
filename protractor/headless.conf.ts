@@ -7,7 +7,7 @@ export const config: Config = {
  specs: ['../test/**/*.spec.js'],
  noGlobals: true,
  onPrepare: () => {
-   browser.manage().timeouts().implicitlyWait(3000)
+   browser.manage().timeouts().implicitlyWait(0)
    browser.ignoreSynchronization = true;
    reporter();
  },
