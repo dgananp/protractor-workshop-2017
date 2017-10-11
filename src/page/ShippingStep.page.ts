@@ -2,19 +2,16 @@ import { $, ElementFinder, promise } from 'protractor';
 
 export class ShippingStepPage {
 
- private get termOfService(): ElementFinder {
+ private get termOfServiceCheck(): ElementFinder {
    return $('#cgv');
  }
 
- private get proccedToCheckout(): ElementFinder {
+ private get proccedToCheckoutButton(): ElementFinder {
   return $('#form > p > button > span');
  }
-
- public checkTermOfService(): promise.Promise<void> {
-   return this.termOfService.click(); 
- }
-
+ 
  public goToPaymentStep(): promise.Promise<void> {
-    return this.proccedToCheckout.click(); 
+    this.termOfServiceCheck.click();
+    return this.proccedToCheckoutButton.click(); 
   }
 }
