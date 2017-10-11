@@ -1,10 +1,9 @@
-import { $, ElementFinder, promise, browser } from 'protractor';
+import { $, ElementFinder, promise, browser, ExpectedConditions} from 'protractor';
 
 export class ProductAddedModalPage {
  private get proccedToCheckoutButton(): ElementFinder {
-  var element = $('[style*="display: block;"] .button-container > a');
-  browser.wait(browser.ExpectedConditions.elementToBeClickable(element), 5000, 'Element not clickable');
-  return element;
+  browser.wait(ExpectedConditions.elementToBeClickable($('[style*="display: block;"] .button-container > a')), 5000, 'Element not clickable');
+  return $('[style*="display: block;"] .button-container > a');
  }
 
  public goToSummaryStep(): promise.Promise<void> {

@@ -1,10 +1,9 @@
-import { $, ElementFinder, promise, browser } from 'protractor';
+import { $, ElementFinder, promise, ExpectedConditions, browser } from 'protractor';
 
 export class MenuContentPage {
  private get tShirtMenu(): ElementFinder {
-  var element = $('#block_top_menu > ul > li:nth-child(3) > a');
-  browser.wait(browser.ExpectedConditions.elementToBeClickable(element), 5000, 'Element not clickable');
-  return element;
+  browser.wait(ExpectedConditions.elementToBeClickable($('#block_top_menu > ul > li:nth-child(3) > a')), 5000, 'Element not clickable');
+  return $('#block_top_menu > ul > li:nth-child(3) > a');
  }
 
  public goToTShirtMenu(): promise.Promise<void> {
