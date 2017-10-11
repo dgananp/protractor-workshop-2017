@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { $, ElementFinder } from 'protractor';
 
 export class ShippingStepPage {
 
@@ -9,9 +9,9 @@ export class ShippingStepPage {
  private get proccedToCheckoutButton(): ElementFinder {
   return $('#form > p > button > span');
  }
- 
- public goToPaymentStep(): promise.Promise<void> {
-    this.termOfServiceCheck.click();
-    return this.proccedToCheckoutButton.click(); 
+
+ public async goToPaymentStep(): Promise<void> {
+    await this.termOfServiceCheck.click();
+    await this.proccedToCheckoutButton.click(); 
   }
 }
