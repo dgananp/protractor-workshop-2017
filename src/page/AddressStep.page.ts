@@ -2,7 +2,7 @@ import { $, ElementFinder, promise } from 'protractor';
 
 export class AddressStepPage {
  private get proccedToCheckoutButton(): ElementFinder {
-   return $('#center_column > form > p > button > span');
+   return $('button[name*="processAddress"] > span');
  }
 
  public goToShippingStep(): promise.Promise<void> {

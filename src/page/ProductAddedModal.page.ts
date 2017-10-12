@@ -2,7 +2,7 @@ import { $, ElementFinder, promise, browser, ExpectedConditions} from 'protracto
 
 export class ProductAddedModalPage {
  private get proccedToCheckoutButton(): ElementFinder {
-   return $('[style*="display: block;"] .button-container > a');
+   return $('[title*="Proceed to checkout"]');
  }
 
  public goToSummaryStep(): promise.Promise<void> {
