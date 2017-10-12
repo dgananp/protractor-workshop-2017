@@ -7,7 +7,7 @@ export class ShippingStepPage {
  }
 
  private get proccedToCheckoutButton(): ElementFinder {
-  return $('#form > p > button > span');
+  return $('button[name="processCarrier"] > span');
  }
 
  public async goToPaymentStep(): Promise<void> {
