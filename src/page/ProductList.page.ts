@@ -11,11 +11,11 @@ export class ProductListPage {
 
  private  findByProduct(productName: string): ElementFinder {
   return this.productContainerList
-         .filter((product: ElementFinder) =>
-          product.$('.product-name')
-           .getText()
-            .then((text: string) => text.includes(productName)))
-         .first();
+    .filter((product: ElementFinder) =>
+      product.$('.product-name')
+        .getText()
+        .then((text: string) => text.includes(productName)))
+      .first();
  }
 
  public selectProduct(productName: string): promise.Promise<void> {
