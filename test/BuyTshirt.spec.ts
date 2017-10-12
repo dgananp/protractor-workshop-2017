@@ -28,7 +28,7 @@ describe('workflow', () => {
 
       beforeAll(async () => {
         await menuContentPage.goToTShirtMenu();
-        await productListPage.goToProducDetail();
+        await productListPage.selectProduct('Faded Short Sleeve T-shirts');
         await productDetailPage.goToProductAdded();
         await productAddedModalPage.goToSummaryStep();
         await summaryStepPage.goToSignInStep();
