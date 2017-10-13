@@ -2,9 +2,7 @@ import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
 describe('workflow', () => {
-
     describe('Open browser', () => {
-
       beforeAll(async () => {
         await browser.get('http://toolsqa.com/automation-practice-form/');
       });
@@ -14,10 +12,10 @@ describe('workflow', () => {
 
         beforeAll(async () => {
           await personalInformationPage.fillForm({
-                 firstName: 'Duvan',
+                 firstName: 'Alejandro',
                  lastName: 'Perdomo',
                  sex: 'Male',
-                 experience: '7',
+                 experience: 7,
                  profession: ['Automation Tester'],
                  tools: ['Selenium Webdriver'],
                  continent: 'South America',

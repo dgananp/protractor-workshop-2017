@@ -1,10 +1,10 @@
-import { $, ElementFinder,$$, ElementArrayFinder} from 'protractor';
+import { element, by, ElementFinder} from 'protractor';
 
 interface PersonalInformationInterface {
     firstName: string,
     lastName: string,
     sex: string,
-    experience: string,
+    experience: number,
     profession: string[],
     tools: string[],
     continent: string,
@@ -14,86 +14,59 @@ interface PersonalInformationInterface {
 export class PersonalInformationPage {  
 
  private get firstNameField(): ElementFinder {
-   return $('[name*="firstname"]');
+   return element(by.name('firstname'));
  }
 
  private get lastnameField(): ElementFinder {
-    return $('[name*="lastname"]');
+    return element(by.name('lastname'));
  }
 
- private get sexRadio(): ElementArrayFinder {
-    return $$('[name*="sex"]')
+ private  sexRadio(sexName: string): ElementFinder {
+    return element(by.css(`[name="sex"][value="${sexName}"]`));
  }
 
- private get experienceRadio(): ElementArrayFinder {
-    return $$('[name*="exp"]')
+ private experienceRadio(year: number): ElementFinder {
+    return element(by.css(`[name="exp"][value="${year}"]`));
  }
 
- private get professionCheck(): ElementArrayFinder {
-    return $$('[name*="profession"]')
+ private professionCheck(profession: string): ElementFinder {
+    return element(by.css(`[name="profession"][value="${profession}"]`));
  }
 
- private get toolsCheck(): ElementArrayFinder {
-    return $$('[name*="tool"]')
+ private toolsCheck(tool: string): ElementFinder {
+    return element(by.css(`[name="tool"][value="${tool}"]`));
  }
 
- private get continentOption(): ElementArrayFinder {
-    return $$('#continents')
+ private continentOption(continent: string): ElementFinder {
+    return element(by.id('continents')).element(by.cssContainingText('option', continent));
  }
 
- private get commandsOption(): ElementArrayFinder {
-    return $$('#selenium_commands')
+ private commandsOption(command: string): ElementFinder {
+    return element(by.id('selenium_commands')).element(by.cssContainingText('option', command));
  }
 
- private get submitButton(): ElementArrayFinder {
-    return $$('#submit')
+ private get submitButton(): ElementFinder {
+    return element(by.id('submit'));
  }
 
  public async getPageTitle(): Promise<string> {
-    return $('#content').$('h1').getText();
+    return element(by.id('content')).element(by.tagName('h1')).getText();
  }
 
  public async fillForm(personalInformation:PersonalInformationInterface): Promise<void> {
     await this.firstNameField.sendKeys(personalInformation.firstName);
     await this.lastnameField.sendKeys(personalInformation.lastName);
-    await this.sexRadio
-                .filter((radio: ElementFinder) => 
-                 radio.getAttribute('value')
-                  .then((text: string) => text.includes(personalInformation.sex)))
-                .first().click();
-    await this.experienceRadio
-                .filter((radio: ElementFinder) => 
-                 radio.getAttribute('value')
-                  .then((text: string) => text.includes(personalInformation.experience)))
-                .first().click();
-    
+    await this.sexRadio(personalInformation.sex).click();                
+    await this.experienceRadio(personalInformation.experience).click()
     for (const profession of personalInformation.profession) {
-        await this.professionCheck
-                    .filter((check: ElementFinder) => 
-                    check.getAttribute('value')
-                      .then((text: string) => text.includes(profession)))
-                    .first().click();
+        await this.professionCheck(profession).click();
     }
     for (const tool of personalInformation.tools) {
-        await this.toolsCheck
-                    .filter((check: ElementFinder) => 
-                    check.getAttribute('value')
-                      .then((text: string) => text.includes(tool)))
-                    .first().click();
+        await this.toolsCheck(tool).click();
     }
-    await this.continentOption            
-                    .$$('option')
-                     .filter((option: ElementFinder) =>                     
-                      option.getText()
-                       .then((text: string) => text.includes(personalInformation.continent)))
-                     .first().click();
+    await this.continentOption(personalInformation.continent).click();            
     for (const command of personalInformation.commands) {                     
-        await this.commandsOption            
-                    .$$('option')
-                     .filter((option: ElementFinder) =>                     
-                      option.getText()
-                       .then((text: string) => text.includes(command)))
-                     .first().click();  
+        await this.commandsOption(command).click();                                
     }
     await this.submitButton.click();                  
  }
