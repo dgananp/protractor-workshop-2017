@@ -49,8 +49,12 @@ export class PersonalInformationPage {
     return element(by.id('submit'));
  }
 
+ private get contentLabel(): ElementFinder {
+  return element(by.id('content')).element(by.tagName('h1'));
+ }
+
  public async getPageTitle(): Promise<string> {
-    return element(by.id('content')).element(by.tagName('h1')).getText();
+    return this.contentLabel.getText();
  }
 
  public async fillForm(personalInformation:PersonalInformationInterface): Promise<void> {
