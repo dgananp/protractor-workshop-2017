@@ -5,11 +5,11 @@ export class IFramePage {
         return element(by.id('IF1'));
     }
     
-    public async getCurrentIFrameHeight(): Promise<string> {
-        return await this.iFrame.getAttribute('height');
+    public async getCurrentIFrameHeight(): Promise<Number> {
+        return Number(await this.iFrame.getAttribute('height'));
     }
 
-    public setIFrameHeight(height: string): promise.Promise<{}> {
+    public setIFrameHeight(height: Number): promise.Promise<{}> {
          return browser.executeScript(`document.querySelector("#IF1").setAttribute('height', ${height});`);
     }
 }

@@ -11,11 +11,11 @@ describe('JavaScript Excecution', () => {
         const iFramePage = new IFramePage();
 
         beforeAll(async () => {
-          await iFramePage.setIFrameHeight('1500');
+          await iFramePage.setIFrameHeight(1500);
         });
 
         it('then the current heigh is', async () => {
-          expect(await iFramePage.getCurrentIFrameHeight()).toBe('1500');
+          expect(await iFramePage.getCurrentIFrameHeight()).toBe(1500);
         });
       });
     });
