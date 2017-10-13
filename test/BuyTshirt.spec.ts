@@ -14,7 +14,9 @@ import {
 } from '../src/page';
 
 describe('workflow', () => {
+  
   describe('Open browser', () => {
+
     beforeAll(async () => {
       await browser.get('http://automationpractice.com/');
     });
