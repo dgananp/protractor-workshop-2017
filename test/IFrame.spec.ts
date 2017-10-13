@@ -17,6 +17,32 @@ describe('JavaScript Excecution', () => {
         it('then the current heigh is', async () => {
           expect(await iFramePage.getCurrentIFrameHeight()).toBe(1500);
         });
+
+        describe('When i am in the context principal', () =>{ 
+          it('then i get Sample Iframe page', async () => {
+            expect(await iFramePage.getPageTitle()).toBe('Sample Iframe page');
+          });
+          describe('When i change to Iframe1', () =>{ 
+            
+            beforeAll(async () => {
+              await iFramePage.switchIframe1();
+            });
+  
+            it('then i get Practice Automation Form', async () => {
+              expect(await iFramePage.getPageTitle()).toBe('Practice Automation Form');
+            });
+            describe('When i return to the context principal', () =>{ 
+              
+              beforeAll(async () => {
+                await iFramePage.switchMainContext();
+              });
+    
+              it('then i get Practice Automation Form', async () => {
+                expect(await iFramePage.getPageTitle()).toBe('Sample Iframe page');
+              });
+            });
+          }); 
+        });
       });
     });
 });
